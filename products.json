@@ -1,0 +1,110 @@
+[
+  {
+    "id": 101,
+    "name": "Teclado mecánico",
+    "category": "Periféricos",
+    "price": 189900,
+    "stock": 8,
+    "description": "Teclado USB para uso diario",
+    "active": true
+  },
+  {
+    "id": 102,
+    "name": "Mouse inalámbrico",
+    "category": "Periféricos",
+    "price": 79900,
+    "stock": 15,
+    "description": "Mouse óptico inalámbrico ergonómico",
+    "active": true
+  },
+  {
+    "id": 103,
+    "name": "Audífonos USB",
+    "category": "Periféricos",
+    "price": 129900,
+    "stock": 6,
+    "description": "Audífonos con micrófono integrado",
+    "active": true
+  },
+  {
+    "id": 104,
+    "name": "Monitor LED de 24 pulgadas",
+    "category": "Pantallas",
+    "price": 649900,
+    "stock": 4,
+    "description": "Monitor Full HD para oficina y estudio",
+    "active": true
+  },
+  {
+    "id": 105,
+    "name": "Monitor LED de 27 pulgadas",
+    "category": "Pantallas",
+    "price": 899900,
+    "stock": 3,
+    "description": "Monitor IPS con resolución QHD",
+    "active": true
+  },
+  {
+    "id": 106,
+    "name": "Cable HDMI",
+    "category": "Accesorios",
+    "price": 29900,
+    "stock": 20,
+    "description": "Cable HDMI de alta velocidad de dos metros",
+    "active": true
+  },
+  {
+    "id": 107,
+    "name": "Hub USB de cuatro puertos",
+    "category": "Accesorios",
+    "price": 59900,
+    "stock": 10,
+    "description": "Expande la conectividad con cuatro puertos USB",
+    "active": true
+  },
+  {
+    "id": 108,
+    "name": "Base refrigerante para portátil",
+    "category": "Accesorios",
+    "price": 109900,
+    "stock": 5,
+    "description": "Base ajustable con ventiladores silenciosos",
+    "active": true
+  },
+  {
+    "id": 109,
+    "name": "Webcam Full HD",
+    "category": "Periféricos",
+    "price": 159900,
+    "stock": 7,
+    "description": "Cámara USB para videollamadas",
+    "active": true
+  },
+  {
+    "id": 110,
+    "name": "Disco externo de 1 TB",
+    "category": "Almacenamiento",
+    "price": 279900,
+    "stock": 5,
+    "description": "Almacenamiento portátil con conexión USB 3.0",
+    "active": true
+  },
+  {
+    "id": 111,
+    "name": "Memoria USB de 64 GB",
+    "category": "Almacenamiento",
+    "price": 39900,
+    "stock": 0,
+    "description": "Memoria USB compacta de alta velocidad",
+    "active": true
+  },
+  {
+    "id": 112,
+    "name": "Adaptador USB-C multipuerto",
+    "category": "Accesorios",
+    "price": 199900,
+    "stock": 2,
+    "description": "Adaptador con HDMI, USB y lector de tarjetas",
+    "active": false
+  }
+]
