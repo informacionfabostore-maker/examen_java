@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FakeStore</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>FakeStore</h1>
+    </header>
+
+    <section id="filtros">
+      <input type="text" id="buscar" placeholder="Buscar producto..." />
+
+      <select id="categoria">
+        <option value="">Todas las categorías</option>
+      </select>
+
+      <label>
+        <input type="checkbox" id="disponibles" />
+        Solo disponibles
+      </label>
+
+      <select id="orden">
+        <option value="">Ordenar</option>
+        <option value="asc">Precio menor a mayor</option>
+        <option value="desc">Precio mayor a menor</option>
+      </select>
+    </section>
+
+    <div id="mensaje"></div>
+
+    <main>
+      <section id="catalogo">
+        <h2>Productos</h2>
+
+        <product-list id="listaProductos"></product-list>
+      </section>
+
+      <aside id="carritoLateral">
+        <shopping-cart id="carrito"></shopping-cart>
+      </aside>
+    </main>
+
+    <section id="checkout">
+      <button id="btnComprar">Confirmar Compra</button>
+
+      <div id="resumenCompra"></div>
+    </section>
+
+    <script src="js/api.js"></script>
+    <script src="js/productos.js"></script>
+    <script src="js/filtro.js"></script>
+    <script src="js/visor_producto.js"></script>
+    <script src="js/carrito.js"></script>
+    <script src="js/carrito_vista.js"></script>
+    <script src="js/boton_compra.js"></script>
+    <script src="js/checkout.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
