@@ -239,6 +239,27 @@ product-card {
   background: var(--color-primary-dark);
 }
 
+#btnComprar {
+  color: var(--color-ink);
+  background: var(--color-accent);
+  border: 2px solid var(--color-primary);
+  box-shadow: 0 8px 20px rgba(138, 111, 61, 0.32);
+  font-weight: 750;
+}
+
+#btnComprar:hover {
+  color: var(--color-ink);
+  background: #d3aa59;
+  box-shadow: 0 10px 24px rgba(138, 111, 61, 0.4);
+}
+
+.producto button:focus-visible,
+#btnComprar:focus-visible,
+#carrito button:focus-visible {
+  outline: 3px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
 .producto button:active,
 #btnComprar:active {
   transform: translateY(1px);
