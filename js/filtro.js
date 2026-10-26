@@ -17,11 +17,19 @@
       );
     });
 
-    if (criterios.orden === "asc") {
-      resultado = resultado.sort((a, b) => a.price - b.price);
-    } else if (criterios.orden === "desc") {
-      resultado = resultado.sort((a, b) => b.price - a.price);
-    }
+    const compararTexto = (a, b) => a.localeCompare(b, "es", { sensitivity: "base" });
+    const ordenes = {
+      asc: (a, b) => a.price - b.price,
+      desc: (a, b) => b.price - a.price,
+      "nombre-asc": (a, b) => compararTexto(a.name, b.name),
+      "nombre-desc": (a, b) => compararTexto(b.name, a.name),
+      "categoria-asc": (a, b) =>
+        compararTexto(a.category, b.category) || compararTexto(a.name, b.name),
+      "categoria-desc": (a, b) =>
+        compararTexto(b.category, a.category) || compararTexto(a.name, b.name)
+    };
+
+    resultado.sort(ordenes[criterios.orden] || (() => 0));
 
     return resultado;
   }
