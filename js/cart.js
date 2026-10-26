@@ -1,7 +1,5 @@
 (function () {
-  const CLAVE_CARRITO = "tecnostock-carrito";
   const UMBRAL_DESCUENTO = 300000;
-  const PORCENTAJE_DESCUENTO = 0.1;
 
   class Carrito {
     constructor(catalogo) {
@@ -10,7 +8,7 @@
     }
 
     leerPersistencia() {
-      const guardado = localStorage.getItem(CLAVE_CARRITO);
+      const guardado = window.almacenamientoCarrito.leer();
       if (guardado === null) return [];
 
       let lineas;
@@ -29,14 +27,13 @@
         if (!linea || !Number.isInteger(linea.id) || !Number.isInteger(linea.cantidad)) {
           throw new Error("El carrito guardado contiene productos o cantidades inválidas.");
         }
+
         const producto = this.obtenerProducto(linea.id);
         if (
           identificadores.has(linea.id) ||
-          !Number.isInteger(linea.cantidad) ||
           linea.cantidad < 1 ||
           linea.cantidad > producto.stock ||
-          !producto.active ||
-          producto.stock === 0
+          !producto.active
         ) {
           throw new Error("El carrito guardado contiene productos o cantidades inválidas.");
         }
@@ -59,7 +56,7 @@
     }
 
     guardar(lineas) {
-      localStorage.setItem(CLAVE_CARRITO, JSON.stringify(lineas));
+      window.almacenamientoCarrito.guardar(lineas);
       this.lineas = lineas;
     }
 
@@ -72,51 +69,46 @@
         throw new Error("La cantidad debe ser un entero mayor o igual a 1.");
       }
 
-      const linea = this.lineas.find((item) => item.id === id);
-      const nuevaCantidad = (linea ? linea.cantidad : 0) + cantidad;
+      const existente = this.lineas.find((linea) => linea.id === id);
+      const nuevaCantidad = (existente ? existente.cantidad : 0) + cantidad;
       if (nuevaCantidad > producto.stock) {
         throw new Error(`Solo hay ${producto.stock} unidades disponibles de ${producto.name}.`);
       }
 
-      const nuevasLineas = this.lineas.map((item) => ({ ...item }));
-      const lineaActualizada = nuevasLineas.find((item) => item.id === id);
-      if (lineaActualizada) {
-        lineaActualizada.cantidad = nuevaCantidad;
-      } else {
-        nuevasLineas.push({ id, cantidad });
-      }
-      this.guardar(nuevasLineas);
+      const lineas = this.lineas.map((linea) => ({ ...linea }));
+      const linea = lineas.find((item) => item.id === id);
+      if (linea) linea.cantidad = nuevaCantidad;
+      else lineas.push({ id, cantidad });
+      this.guardar(lineas);
     }
 
     cambiarCantidad(id, cambio) {
       if (!Number.isInteger(cambio) || Math.abs(cambio) !== 1) {
         throw new Error("El cambio de cantidad debe ser de una unidad.");
       }
+
       const linea = this.lineas.find((item) => item.id === id);
       if (!linea) throw new Error("El producto no está en el carrito.");
-
       const nuevaCantidad = linea.cantidad + cambio;
       if (nuevaCantidad < 1) {
         throw new Error("La cantidad no puede ser menor que 1. Elimina el producto si ya no lo necesitas.");
       }
-
       const producto = this.obtenerProducto(id);
       if (nuevaCantidad > producto.stock) {
         throw new Error(`Solo hay ${producto.stock} unidades disponibles de ${producto.name}.`);
       }
 
-      const nuevasLineas = this.lineas.map((item) =>
+      this.guardar(this.lineas.map((item) =>
         item.id === id ? { ...item, cantidad: nuevaCantidad } : { ...item }
-      );
-      this.guardar(nuevasLineas);
+      ));
     }
 
     eliminar(id) {
-      const lineasActualizadas = this.lineas.filter((linea) => linea.id !== id);
-      if (lineasActualizadas.length === this.lineas.length) {
+      const lineas = this.lineas.filter((linea) => linea.id !== id);
+      if (lineas.length === this.lineas.length) {
         throw new Error("El producto no está en el carrito.");
       }
-      this.guardar(lineasActualizadas);
+      this.guardar(lineas);
     }
 
     vaciar() {
@@ -124,20 +116,18 @@
     }
 
     calcularResumen() {
-      const lineas = this.lineas.map((linea) => {
-        const producto = this.obtenerProducto(linea.id);
+      const lineas = this.lineas.map(({ id, cantidad }) => {
+        const producto = this.obtenerProducto(id);
         return {
-          id: producto.id,
+          id,
           name: producto.name,
           price: producto.price,
-          cantidad: linea.cantidad,
-          subtotal: producto.price * linea.cantidad
+          cantidad,
+          subtotal: producto.price * cantidad
         };
       });
       const subtotal = lineas.reduce((suma, linea) => suma + linea.subtotal, 0);
-      const descuento = subtotal >= UMBRAL_DESCUENTO
-        ? Math.round(subtotal * PORCENTAJE_DESCUENTO)
-        : 0;
+      const descuento = subtotal >= UMBRAL_DESCUENTO ? Math.round(subtotal * 0.1) : 0;
 
       return {
         lineas,

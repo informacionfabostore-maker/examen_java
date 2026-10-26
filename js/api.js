@@ -46,7 +46,7 @@
     let respuesta;
 
     try {
-      respuesta = await fetch("products.json");
+      respuesta = await fetch("data/products.json");
     } catch (error) {
       throw new Error("No se pudo consultar el catálogo. Verifica la conexión y vuelve a intentarlo.");
     }

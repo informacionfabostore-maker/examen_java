@@ -4,7 +4,7 @@ Tienda web de suministros tecnológicos creada con HTML, CSS y JavaScript nativo
 
 ## Cómo ejecutar
 
-La aplicación obtiene los productos con `fetch("products.json")`, por lo que debe abrirse desde un servidor web local y no directamente como archivo `file://`.
+La aplicación obtiene los productos desde `data/products.json` mediante `fetch`, por lo que debe abrirse desde un servidor web local y no directamente como archivo `file://`.
 
 1. Abre la carpeta del proyecto en Visual Studio Code.
 2. Inicia `index.html` con la extensión **Live Server** (clic derecho → **Open with Live Server**).
@@ -14,7 +14,7 @@ No se necesita instalar dependencias ni ejecutar un proceso de compilación.
 
 ## Funcionalidades
 
-- Carga de `products.json` mediante HTTP local, con validación de datos y mensajes de error.
+- Carga de `data/products.json` mediante HTTP local, con validación de datos y mensajes de error.
 - Búsqueda por nombre o descripción, sin distinguir mayúsculas y minúsculas.
 - Filtros combinables por categoría y disponibilidad.
 - Orden por precio, nombre o categoría, ascendente y descendente.
@@ -56,16 +56,17 @@ Reglas del catálogo:
 
 ```text
 index.html       Estructura de la tienda y carga de scripts
-style.css        Estilos, paleta de colores y diseño adaptable
-products.json    Datos del catálogo
+css/
+  styles.css     Estilos, paleta de colores y diseño adaptable
+data/
+  products.json  Datos del catálogo
 js/
+  app.js         Inicialización, filtros y flujo de compra
   api.js         Carga y validación del catálogo
-  productos.js   Formato de precios y utilidades de productos
-  filtro.js      Búsqueda, filtros y ordenamiento
-  visor_producto.js  Web Components de tarjetas y catálogo
-  carrito.js     Reglas del carrito, inventario, persistencia y totales
-  carrito_vista.js   Web Component de presentación del carrito
-  boton_compra.js    Confirmación de compra
-  checkout.js    Validación y resumen de la compra simulada
-  main.js        Inicialización e integración de la interfaz
+  cart.js        Reglas del carrito, inventario y totales
+  storage.js     Persistencia del carrito en localStorage
+  components/
+    product-card.js    Tarjeta de producto
+    product-list.js    Lista del catálogo
+    shopping-cart.js   Vista e interacción del carrito
 ```

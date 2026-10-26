@@ -5,16 +5,14 @@
         const boton = evento.target.closest("button[data-action]");
         if (!boton) return;
 
-        this.dispatchEvent(
-          new CustomEvent("carrito-accion", {
-            bubbles: true,
-            composed: true,
-            detail: {
-              action: boton.dataset.action,
-              id: Number(boton.dataset.id)
-            }
-          })
-        );
+        this.dispatchEvent(new CustomEvent("carrito-accion", {
+          bubbles: true,
+          composed: true,
+          detail: {
+            action: boton.dataset.action,
+            id: Number(boton.dataset.id)
+          }
+        }));
       });
     }
 
