@@ -65,3 +65,64 @@ main{
     gap: 20px;
 }
 
+.producto{
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,.2);
+}
+
+.producto h3{
+    margin-bottom: 10px;
+}
+
+.producto p{
+    margin-bottom: 8px;
+}
+
+.producto button{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #2563eb;
+    color: white;
+    cursor: pointer;
+}
+
+.producto button:hover{
+    background-color: #1d4ed8;
+}
+
+#carritoLateral{
+    width: 30%;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,.2);
+}
+
+#checkout{
+    text-align: center;
+    margin: 30px;
+}
+
+#btnComprar{
+    padding: 12px 25px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#btnComprar:hover{
+    background: darkgreen;
+}
+
+#mensaje{
+    text-align: center;
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
+}
