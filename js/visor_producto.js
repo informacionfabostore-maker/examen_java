@@ -12,11 +12,11 @@
       const disponible = producto.active && producto.stock > 0;
       this.innerHTML = `
         <article class="producto">
+          <p class="producto__categoria">${window.tienda.escaparHTML(producto.category)}</p>
           <h3>${window.tienda.escaparHTML(producto.name)}</h3>
-          <p>${window.tienda.escaparHTML(producto.category)}</p>
-          <p>${window.tienda.escaparHTML(producto.description)}</p>
-          <p>${window.tienda.formatearPrecio(producto.price)}</p>
-          <p>${disponible ? `Unidades disponibles: ${producto.stock}` : "No disponible"}</p>
+          <p class="producto__descripcion">${window.tienda.escaparHTML(producto.description)}</p>
+          <p class="producto__precio">${window.tienda.formatearPrecio(producto.price)}</p>
+          <p class="producto__inventario">${disponible ? `Unidades disponibles: ${producto.stock}` : "No disponible"}</p>
           <button type="button" ${disponible ? "" : "disabled"}>
             Agregar al carrito
           </button>
