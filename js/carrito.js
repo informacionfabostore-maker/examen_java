@@ -52,6 +52,12 @@
       return producto;
     }
 
+    stockDisponible(id) {
+      const producto = this.obtenerProducto(id);
+      const linea = this.lineas.find((item) => item.id === id);
+      return producto.stock - (linea ? linea.cantidad : 0);
+    }
+
     guardar(lineas) {
       localStorage.setItem(CLAVE_CARRITO, JSON.stringify(lineas));
       this.lineas = lineas;

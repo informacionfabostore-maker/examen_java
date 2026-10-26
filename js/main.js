@@ -16,8 +16,12 @@
       soloDisponibles: document.getElementById("disponibles").checked,
       orden: document.getElementById("orden").value
     };
+    const catalogoConDisponibilidad = window.tienda.catalogo.map((producto) => ({
+      ...producto,
+      stock: carrito.stockDisponible(producto.id)
+    }));
     window.tienda.productosVisibles = window.filtrosTienda.filtrarProductos(
-      window.tienda.catalogo,
+      catalogoConDisponibilidad,
       criterios
     );
     lista.mostrar(window.tienda.productosVisibles);
@@ -25,6 +29,7 @@
 
   function actualizarCarrito() {
     carritoVista.mostrar(carrito.calcularResumen());
+    aplicarFiltros();
   }
 
   function ejecutarAccionCarrito(accion, id) {
@@ -99,7 +104,6 @@
 
       carrito = new window.Carrito(window.tienda.catalogo);
       conectarControles();
-      aplicarFiltros();
       actualizarCarrito();
       mostrarMensaje("Catálogo cargado correctamente.");
     } catch (error) {
