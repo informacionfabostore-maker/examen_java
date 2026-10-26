@@ -52,8 +52,9 @@
       return producto;
     }
 
-    guardar() {
-      localStorage.setItem(CLAVE_CARRITO, JSON.stringify(this.lineas));
+    guardar(lineas) {
+      localStorage.setItem(CLAVE_CARRITO, JSON.stringify(lineas));
+      this.lineas = lineas;
     }
 
     agregar(id, cantidad = 1) {
@@ -71,12 +72,14 @@
         throw new Error(`Solo hay ${producto.stock} unidades disponibles de ${producto.name}.`);
       }
 
-      if (linea) {
-        linea.cantidad = nuevaCantidad;
+      const nuevasLineas = this.lineas.map((item) => ({ ...item }));
+      const lineaActualizada = nuevasLineas.find((item) => item.id === id);
+      if (lineaActualizada) {
+        lineaActualizada.cantidad = nuevaCantidad;
       } else {
-        this.lineas.push({ id, cantidad });
+        nuevasLineas.push({ id, cantidad });
       }
-      this.guardar();
+      this.guardar(nuevasLineas);
     }
 
     cambiarCantidad(id, cambio) {
@@ -96,8 +99,10 @@
         throw new Error(`Solo hay ${producto.stock} unidades disponibles de ${producto.name}.`);
       }
 
-      linea.cantidad = nuevaCantidad;
-      this.guardar();
+      const nuevasLineas = this.lineas.map((item) =>
+        item.id === id ? { ...item, cantidad: nuevaCantidad } : { ...item }
+      );
+      this.guardar(nuevasLineas);
     }
 
     eliminar(id) {
@@ -105,13 +110,11 @@
       if (lineasActualizadas.length === this.lineas.length) {
         throw new Error("El producto no está en el carrito.");
       }
-      this.lineas = lineasActualizadas;
-      this.guardar();
+      this.guardar(lineasActualizadas);
     }
 
     vaciar() {
-      this.lineas = [];
-      this.guardar();
+      this.guardar([]);
     }
 
     calcularResumen() {
