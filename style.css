@@ -44,3 +44,24 @@ label{
     font-size: 15px;
 }
 
+main{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+}
+
+#catalogo{
+    width: 70%;
+}
+
+#catalogo h2{
+    margin-bottom: 20px;
+}
+
+#listaProductos{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(230px,1fr));
+    gap: 20px;
+}
+
