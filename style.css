@@ -1,16 +1,18 @@
 :root {
   color-scheme: light;
   font-family: Inter, "Segoe UI", Arial, sans-serif;
-  color: #172033;
-  background: #f4f7fb;
+  color: #2b2b2b;
+  background: #fff7e6;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  --color-primary: #3157d5;
-  --color-primary-dark: #2444b5;
-  --color-muted: #69758a;
-  --color-border: #e3e8f0;
-  --color-surface: #ffffff;
-  --shadow-card: 0 12px 30px rgba(24, 39, 75, 0.07);
+  --color-primary: #8a6f3d;
+  --color-primary-dark: #705a32;
+  --color-muted: #66563a;
+  --color-border: #bfc6cf;
+  --color-surface: #fff7e6;
+  --color-accent: #e6c27a;
+  --color-ink: #2b2b2b;
+  --shadow-card: 0 12px 30px rgba(43, 43, 43, 0.08);
 }
 
 * {
@@ -22,8 +24,8 @@ body {
   min-height: 100vh;
   margin: 0;
   background:
-    radial-gradient(ellipse at top left, rgba(82, 119, 232, 0.1), transparent 34rem),
-    #f4f7fb;
+    radial-gradient(ellipse at top left, rgba(230, 194, 122, 0.22), transparent 34rem),
+    #fff7e6;
 }
 
 button,
@@ -34,9 +36,9 @@ select {
 
 header {
   padding: 28px max(24px, calc((100% - 1440px) / 2));
-  color: #fff;
-  background: linear-gradient(120deg, #182447, #293d72);
-  box-shadow: 0 8px 24px rgba(23, 35, 68, 0.16);
+  color: #fff7e6;
+  background: linear-gradient(120deg, #2b2b2b, #8a6f3d);
+  box-shadow: 0 8px 24px rgba(43, 43, 43, 0.18);
 }
 
 header h1 {
@@ -61,7 +63,7 @@ header h1 {
   min-width: 0;
   min-height: 48px;
   padding: 0 15px;
-  color: #26334a;
+  color: var(--color-ink);
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 12px;
@@ -79,14 +81,14 @@ header h1 {
 }
 
 #buscar::placeholder {
-  color: #8994a7;
+  color: var(--color-muted);
 }
 
 #buscar:focus,
 #categoria:focus,
 #orden:focus {
-  border-color: #8da3f1;
-  box-shadow: 0 0 0 4px rgba(49, 87, 213, 0.1);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(138, 111, 61, 0.16);
 }
 
 #filtros label {
@@ -96,7 +98,7 @@ header h1 {
   gap: 9px;
   min-height: 48px;
   padding: 0 14px;
-  color: #47536a;
+  color: var(--color-ink);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 12px;
@@ -133,7 +135,7 @@ main {
 #catalogo h2,
 #carrito h2 {
   margin: 0;
-  color: #1b2740;
+  color: var(--color-ink);
   font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: -0.025em;
@@ -162,7 +164,7 @@ product-card {
   padding: 20px;
   overflow-wrap: anywhere;
   background: var(--color-surface);
-  border: 1px solid rgba(227, 232, 240, 0.9);
+  border: 1px solid rgba(191, 198, 207, 0.75);
   border-radius: 16px;
   box-shadow: var(--shadow-card);
   transition: transform 180ms ease, box-shadow 180ms ease;
@@ -170,15 +172,15 @@ product-card {
 
 .producto:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 34px rgba(24, 39, 75, 0.12);
+  box-shadow: 0 16px 34px rgba(43, 43, 43, 0.14);
 }
 
 .producto__categoria {
   align-self: flex-start;
   margin: 0 0 12px;
   padding: 5px 10px;
-  color: #3454b5;
-  background: #edf1ff;
+  color: var(--color-ink);
+  background: var(--color-accent);
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 700;
@@ -188,7 +190,7 @@ product-card {
 .producto h3 {
   min-height: 2.8em;
   margin: 0 0 10px;
-  color: #1d2940;
+  color: var(--color-ink);
   font-size: 1.05rem;
   line-height: 1.4;
 }
@@ -203,7 +205,7 @@ product-card {
 
 .producto__precio {
   margin: auto 0 8px;
-  color: #1b2740;
+  color: var(--color-ink);
   font-size: 1.2rem;
   font-weight: 750;
   letter-spacing: -0.025em;
@@ -211,14 +213,14 @@ product-card {
 
 .producto__inventario {
   margin: 0 0 16px;
-  color: #68758b;
+  color: var(--color-muted);
   font-size: 0.82rem;
 }
 
 .producto button,
 #btnComprar {
   min-height: 44px;
-  color: #fff;
+  color: var(--color-surface);
   background: var(--color-primary);
   border: 0;
   border-radius: 10px;
@@ -245,8 +247,8 @@ product-card {
 .producto button:disabled,
 #carrito button:disabled,
 #btnComprar:disabled {
-  color: #8a93a3;
-  background: #e8ebf1;
+  color: var(--color-ink);
+  background: var(--color-border);
   cursor: not-allowed;
 }
 
@@ -271,9 +273,9 @@ product-card {
 
 #carrito li {
   padding: 14px;
-  color: #344158;
-  background: #f7f8fc;
-  border: 1px solid #edf0f5;
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border: 1px solid rgba(191, 198, 207, 0.75);
   border-radius: 12px;
   font-size: 0.9rem;
   line-height: 1.5;
@@ -282,7 +284,7 @@ product-card {
 #carrito li strong {
   display: block;
   margin-bottom: 5px;
-  color: #202c43;
+  color: var(--color-ink);
   overflow-wrap: anywhere;
 }
 
@@ -297,8 +299,8 @@ product-card {
   min-height: 34px;
   margin: 3px 4px 0 0;
   padding: 5px 10px;
-  color: #344158;
-  background: #fff;
+  color: var(--color-ink);
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 8px;
   cursor: pointer;
@@ -306,7 +308,7 @@ product-card {
 
 #carrito button:hover:not(:disabled) {
   color: var(--color-primary-dark);
-  border-color: #aebcf1;
+  border-color: var(--color-primary);
 }
 
 #carrito > p {
@@ -314,12 +316,12 @@ product-card {
   justify-content: space-between;
   gap: 12px;
   margin: 10px 0;
-  color: #5f6b80;
+  color: var(--color-muted);
   font-size: 0.92rem;
 }
 
 #carrito > p strong {
-  color: #1b2740;
+  color: var(--color-ink);
   font-size: 1rem;
 }
 
@@ -334,13 +336,13 @@ product-card {
   min-width: 210px;
   min-height: 48px;
   padding: 0 22px;
-  box-shadow: 0 8px 18px rgba(49, 87, 213, 0.2);
+  box-shadow: 0 8px 18px rgba(138, 111, 61, 0.24);
 }
 
 #resumenCompra {
   margin-top: 18px;
   padding: 20px;
-  color: #344158;
+  color: var(--color-ink);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 14px;
@@ -354,7 +356,15 @@ product-card {
 
 #resumenCompra h2 {
   margin-top: 0;
-  color: #1b2740;
+  color: var(--color-ink);
+}
+
+#mensaje.mensaje--exito {
+  color: var(--color-primary-dark);
+}
+
+#mensaje.mensaje--error {
+  color: var(--color-ink);
 }
 
 #resumenCompra ul {

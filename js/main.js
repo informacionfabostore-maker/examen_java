@@ -6,7 +6,8 @@
 
   function mostrarMensaje(texto, esError = false) {
     mensaje.textContent = texto;
-    mensaje.style.color = esError ? "red" : "green";
+    mensaje.classList.toggle("mensaje--error", esError);
+    mensaje.classList.toggle("mensaje--exito", !esError);
   }
 
   function aplicarFiltros() {
