@@ -76,7 +76,8 @@
     `;
 
     carrito.vaciar();
-    document.getElementById("resumenCompra").innerHTML = contenido;
+    const resumenCompra = document.getElementById("resumenCompra");
+    resumenCompra.innerHTML = contenido;
   }
 
   const mensaje = document.getElementById("mensaje");
