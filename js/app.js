@@ -63,16 +63,34 @@
       ? window.crypto.randomUUID()
       : `PED-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
     const lineas = resumen.lineas.map((linea) => `
-      <li>${escaparHTML(linea.name)} — ${linea.cantidad} × ${formatearPrecio(linea.price)}
-      = ${formatearPrecio(linea.subtotal)}</li>
+      <li class="comprobante__linea">
+        <div class="comprobante__producto">
+          <strong>${escaparHTML(linea.name)}</strong>
+          <span>${linea.cantidad} × ${formatearPrecio(linea.price)}</span>
+        </div>
+        <strong class="comprobante__subtotal">${formatearPrecio(linea.subtotal)}</strong>
+      </li>
     `).join("");
     const contenido = `
-      <h2>Compra confirmada</h2>
-      <p>Pedido: <strong>${escaparHTML(idPedido)}</strong></p>
-      <ul>${lineas}</ul>
-      <p>Subtotal: ${formatearPrecio(resumen.subtotal)}</p>
-      <p>Descuento: −${formatearPrecio(resumen.descuento)}</p>
-      <p><strong>Total: ${formatearPrecio(resumen.total)}</strong></p>
+      <article class="comprobante" aria-labelledby="tituloComprobante">
+        <div class="comprobante__encabezado">
+          <div>
+            <p class="comprobante__etiqueta">Comprobante de compra</p>
+            <h2 id="tituloComprobante">¡Gracias por tu compra!</h2>
+            <p class="comprobante__pedido">Pedido <strong>${escaparHTML(idPedido)}</strong></p>
+          </div>
+          <span class="comprobante__estado">✓ Confirmada</span>
+        </div>
+        <section class="comprobante__detalle" aria-label="Productos comprados">
+          <h3>Productos <span>${resumen.unidades} unidades</span></h3>
+          <ul>${lineas}</ul>
+        </section>
+        <dl class="comprobante__totales">
+          <div><dt>Subtotal</dt><dd>${formatearPrecio(resumen.subtotal)}</dd></div>
+          <div><dt>Descuento</dt><dd>−${formatearPrecio(resumen.descuento)}</dd></div>
+          <div class="comprobante__total"><dt>Total pagado</dt><dd>${formatearPrecio(resumen.total)}</dd></div>
+        </dl>
+      </article>
     `;
 
     carrito.vaciar();
