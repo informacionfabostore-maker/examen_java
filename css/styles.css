@@ -297,7 +297,8 @@ product-card { display: block; min-width: 0; }
 }
 
 #resumenCompra {
-  margin-top: 18px;
+  max-width: 1384px;
+  margin: 0 auto 18px;
   padding: 20px;
   background: var(--surface);
   border: 1px solid var(--border);

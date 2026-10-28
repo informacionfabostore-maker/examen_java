@@ -78,7 +78,7 @@
     carrito.vaciar();
     const resumenCompra = document.getElementById("resumenCompra");
     resumenCompra.innerHTML = contenido;
-    resumenCompra.scrollIntoView({ behavior: "smooth", block: "center" });
+    resumenCompra.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   const mensaje = document.getElementById("mensaje");
